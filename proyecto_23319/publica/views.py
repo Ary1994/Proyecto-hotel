@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from django.http import HttpResponse
+from datetime import datetime
 # Create your views here.
 def hola_mundo(request):
     return HttpResponse('hola mundo Django')
@@ -9,7 +10,13 @@ def index(request):
         
     else:
         titulo="este titulos es accedido por post"
-    return render(request,'publica/index.html')
+
+    param_1=request.GET.get('param1')
+    return render(request,'publica/index.html',{
+       'titulo':titulo,
+       'param1':param_1,
+       'hoy':datetime.now
+    })
     #return HttpResponse(f"""<h1>PROYECTO DJANGO - CODO A CODO</h1>
                 #<p>{titulo}</p>
             #""")
